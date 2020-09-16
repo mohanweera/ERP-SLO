@@ -16,7 +16,7 @@
     </div>
 </div>
 <div class="card-body">
-    <input type="text" id="asd">
+    
     <table id="data-table" class="table table-bordered table-striped">
     <thead class="thead-dark">
     <tr>
@@ -47,7 +47,6 @@
 <script>
     $(document).ready(function () {
         //alert();
-        $('#asd').val('hiii');
         $(".trashBut").click(function() {
             var row = $(this).closest("tr"),       // Finds the closest row <tr> 
                 tds = row.find("td");
