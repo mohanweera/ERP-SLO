@@ -1,0 +1,8 @@
+{
+    "Slo": true,
+    "Admin": true,
+    "Academic": true,
+    "Controller": true,
+    "FetchController": true,
+    "Exam": true
+}

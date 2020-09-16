@@ -1,0 +1,126 @@
+.behind {
+    font-size: small !important;
+}
+
+.z {
+    font-size: small !important;
+}
+
+.myTitle {
+    font-size: small !important;
+}
+
+.myDropdown {
+
+    height: 30px !important;
+
+
+    font-size: 12px !important;
+
+}
+
+.myTable {
+    font-size: 14px !important;
+
+}
+
+.myTable th {
+}
+
+.my_container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.con-left {
+    grid-column: 1/4;
+}
+
+.con-right {
+    grid-column: 10/13;
+}
+
+.con-middle {
+    grid-column: 4/10;
+}
+
+.form_container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.form-left {
+    grid-column: 1/10;
+}
+
+.form-right {
+    grid-column: 10/13;
+}
+
+.img-preview {
+    border-radius: 20%;
+    width: 200px;
+    min-height: 50px;
+
+    margin: 2px auto;
+    display: none;
+}
+
+.img {
+
+
+}
+
+.sub-title {
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    font-size: 50px;
+    color: #33331a;
+
+    margin: 350px auto;
+}
+
+.sub-title-mini {
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    font-size: 50px;
+    color: #33331a;
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+}
+
+form input, textarea {
+    height: 35px !important;
+
+    font-size: 14px !important;
+}
+
+form label {
+    color: #4f5962;
+}
+
+.dt-buttons {
+    /* margin-bottom: -7px; */
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    text-align: center !important;
+
+}
+
+.button {
+    background-color: 17a2b8!important; /* Green */
+    background-image: none !important;
+    border-color: #17a2b8 !important;
+    color:white !important;
+
+
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+
+
