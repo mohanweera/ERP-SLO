@@ -14,6 +14,7 @@ use Modules\Slo\Entities\Student;
 use Modules\Slo\Entities\CourseStudent;
 use Modules\Slo\Entities\Country;
 use Modules\Slo\Entities\idrange;
+use Modules\Slo\Entities\Slqfstr;
 use DB;
 class StudentController extends Controller
 {
@@ -48,7 +49,8 @@ class StudentController extends Controller
     {
         //echo $id; return;
         $dep = departments::find($request->dept_id);
-        $slqf = "05";
+        $slqf_s = Slqfstr::find(1);
+        $slqf = $slqf_s->slqf_code;
         return response()->json(array('dept_code'=> $dep->dept_code,'slqf'=>$slqf), 200);
     }
     public function getMiddleId(Request  $request)
