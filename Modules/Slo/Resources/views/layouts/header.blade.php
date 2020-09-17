@@ -77,7 +77,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="">Course Requirements</a>
                                 <a class="dropdown-item" href="">Hospitals</a>
-                                <a class="dropdown-item" href="">Upload Category</a>
+                                <a class="dropdown-item" href="/uploadCtList">Upload Category</a>
 
                             </div>
                         </li>

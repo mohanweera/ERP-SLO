@@ -63,6 +63,36 @@ $(document).ready(function(){
         }
       });
   });
+  ///////////////// Add Upload Category /////
+  $("#uploadCatForm").submit(function(event){
+    event.preventDefault(); //prevent default action 
+    var form_data = new FormData(this); //Creates new FormData object
+    $.ajax({
+      type:'POST',
+      url:'/addNewUC',
+      data : form_data,
+      contentType: false,
+      cache: false,
+      processData:false,
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      success:function(data){
+        if(data.msg == 1){
+          toastr.success('Category Added Successfully');
+          $('#uploadCatForm').trigger("reset");
+        }else{
+          toastr.error('Category Adding Error');
+        }
+        
+      },
+      error: function(xhr, status, error) 
+        {
+          $.each(xhr.responseJSON.errors, function (key, item) 
+          {
+            toastr.danger('Something error');
+          });
+        }
+      });
+  });
   ///////////////// Add Batches /////
   $("#batchAddForm").submit(function(event){
     event.preventDefault(); //prevent default action 
@@ -109,10 +139,10 @@ $(document).ready(function(){
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       success:function(data){
         if(data.msg == 1){
-          toastr.success('ID Range Added Successfully');
+          toastr.success('New Student Added Successfully');
           $('#studentAddForm').trigger("reset");
         }else{
-          toastr.error('ID Range Adding Error');
+          toastr.error('New Student Adding Error');
         }
       },
       error: function(xhr, status, error) 

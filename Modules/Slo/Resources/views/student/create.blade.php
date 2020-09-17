@@ -199,7 +199,7 @@
                                         <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
                                     </div>
                                     <input type="text" class="form-control nic-pass myDropdown" id="nicpass"
-                                           name="nic_passport"
+                                           name="nicpass"
                                            placeholder="NIC/Passport" pattern="[0-9]{9}[x|X|v|V]|[0-9]{12}"
                                            required="required">
                                 </div>

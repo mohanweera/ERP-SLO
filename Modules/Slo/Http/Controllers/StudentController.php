@@ -39,7 +39,7 @@ class StudentController extends Controller
     }
     public function loadDepartments($id)
     {
-        
+
         $dep = DB::table('departments')
         ->select('departments.*')
         ->where('faculty_id' , '=' , $id)->get();
@@ -117,12 +117,20 @@ class StudentController extends Controller
         $std->gender = $request->gender;
         $std->gen_id = $request->stdReg;
         $std->cgsid = $request->idrange;
+        $std->range_id = $request->std3;
         if($std->save()){
             $last = Student::all()->max('student_id');
             $stdc = new CourseStudent;
             $stdc->course_id = $request->course_id;
             $stdc->student_id = $last;
             if($stdc->save()){
+                $idr = idrange::find($request->idrange);
+                $idr->last_id = $request->std3 + 1;
+                $idr->save();
+                if(!is_dir('students')){
+                    mkdir('students');
+                }
+                mkdir('students/'. $request->std3);
                 return response()->json(array('msg'=> 1), 200);
             }else{
                 return response()->json(array('msg'=> 2), 200);
