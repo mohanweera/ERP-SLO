@@ -58,7 +58,11 @@
     </div>
 </form>
 @else
-ddddd
+<div class="card">
+<div class="card-body">
+    <h4>No Students</h4>
+</div>
+</div>
 @endif
 </div>
 
