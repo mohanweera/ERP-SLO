@@ -63,3 +63,6 @@ Route::post('/addNewUC', 'UploadCController@store');
 Route::get('/addNewUpCat/{id}', 'UploadCController@show')->name('ct.show');
 Route::get('/trashUpCt', 'UploadCController@trash');
 Route::get('/upCatTrashList', 'UploadCController@trashList')->name('ct.trash');
+
+Route::get('/stdUpHome', 'StdupController@index')->name('stdup.index');
+Route::get('/searchUploads', 'StdupController@create')->name('stdup.searchup');
