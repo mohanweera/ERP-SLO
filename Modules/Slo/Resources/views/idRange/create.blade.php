@@ -55,8 +55,16 @@
                     <div class="form-group">
                         <div class="form-group row">
                             <div class="col-sm-4">
-                                <input type="number" name="start"  class="form-control" id="start" placeholder="Start Number" required="required" value="{{$start}}" readonly></div>
-                            <div class="col-sm-4"><input type="number" name="end"  class="form-control" id="end" placeholder="End Number" required="required" value="{{$data->end ?? ''}}"></div>
+                            <input type="number" name="start"  class="form-control" id="start" placeholder="Start Number" required value="{{$start}}" min="{{$start}}">
+                            </div>
+                            <div class="col-sm-4">
+                                @if(isset($data))
+                                <input type="number" name="end"  class="form-control" id="end" placeholder="End Number" required="required" value="{{$data->end ?? ''}}"  readonly>
+                                @else
+                                <input type="number" name="end"  class="form-control" id="end" placeholder="End Number" required="required" value="{{$data->end ?? ''}}"  min="{{$start}}">
+                                @endif
+                            
+                            </div>
                             <!-- <div class="col-sm-4"><input type="number" name="" value="" class="form-control" id="" placeholder="Total" ></div>               -->
                         </div>
                     </div>

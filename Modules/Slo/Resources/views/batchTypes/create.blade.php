@@ -30,13 +30,11 @@
                             <div class="form-group">
                                 <label for="batch_type">Batch Type Code</label>
                                 @if(isset($batchData))
-                                <input type="text" class="form-control" name="batch_type" id="batch_type" value="{{$batchData->batch_type ?? ''}}" readonly>
+                                <input type="number" class="form-control" name="batch_type" id="batch_type" value="{{$batchData->batch_type ?? ''}}" readonly required>
                                 @else
-                                <input type="text" class="form-control" name="batch_type" id="batch_type"
-                                       placeholder="00" pattern="[0-9]{2}" title="two number code" value="">
+                                <input type="number" class="form-control" name="batch_type" id="batch_type"
+                                       placeholder="00" pattern="[0-9]{2}" title="two number code" value="" required>
                                 @endif
-                                
-                                       <div class="invalid-feedback">Required</div>
                             </div>
                         </div>
                     </div>
@@ -44,8 +42,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <textarea class="form-control" name="description" id="description">{{$batchData->description ?? ''}}</textarea>
-                                <div class="invalid-feedback">Required</div>
+                                <textarea class="form-control" name="description" id="description" required>{{$batchData->description ?? ''}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -65,4 +62,5 @@
     </div>
 </form>
 </div>
+
 @endsection

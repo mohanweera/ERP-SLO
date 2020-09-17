@@ -4,6 +4,36 @@
 
 $(document).ready(function(){
   ///////////////// Add Batch Types /////
+  $("#addNewGroup").submit(function(event){
+    event.preventDefault(); //prevent default action 
+    var form_data = new FormData(this); //Creates new FormData object
+    $.ajax({
+      type:'POST',
+      url:'/addNewGroup',
+      data : form_data,
+      contentType: false,
+      cache: false,
+      processData:false,
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      success:function(data){
+        if(data.msg == 1){
+          toastr.success('Group Added Successfully');
+          $('#addNewGroup').trigger("reset");
+        }else{
+          toastr.error('Group Adding Error');
+        }
+
+      },
+      error: function(xhr, status, error) 
+        {
+          $.each(xhr.responseJSON.errors, function (key, item) 
+          {
+            toastr.danger('Something error');
+          });
+        }
+      });
+  });
+  ///////////////// Add Batch Types /////
   $("#addNewBatchTypes").submit(function(event){
     event.preventDefault(); //prevent default action 
     var form_data = new FormData(this); //Creates new FormData object
@@ -22,7 +52,7 @@ $(document).ready(function(){
         }else{
           toastr.error('Batch Type Adding Error');
         }
-        
+
       },
       error: function(xhr, status, error) 
         {
@@ -94,7 +124,9 @@ $(document).ready(function(){
       });
   });
   ///////////////// Add ID Range /////
+  
   $("#addNewIdRange").submit(function(event){
+    
     event.preventDefault(); //prevent default action 
     var form_data = new FormData(this); //Creates new FormData object
     $.ajax({

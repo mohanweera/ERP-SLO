@@ -20,8 +20,12 @@ class IdRangeController extends Controller
     {
         $list = DB::table('id_ranges')
         ->join('courses', 'courses.course_id', '=', 'id_ranges.course_id')
-        ->select('id_ranges.*', 'courses.course_name')
-        ->where("deleted_at" , "=" , null)->get();
+        ->leftJoin('students','students.cgsid','=','id_ranges.id')
+        ->select('id_ranges.*', 'courses.course_name' , 'students.cgsid')
+        ->where('id_ranges.deleted_at' , '=' , null)
+        ->get();
+
+        
         return view('slo::idrange.index')->with("list",$list);
     }
 
@@ -31,7 +35,14 @@ class IdRangeController extends Controller
      */
     public function create()
     {
-        $courses = courses::all();
+        $courses = DB::table('courses')
+        ->select(
+            'courses.*'
+        )
+        ->leftJoin('id_ranges','id_ranges.course_id','=','courses.course_id')
+        ->where('id_ranges.course_id' , '=' , null)->orWhere('id_ranges.hold' , '=' , 1)
+        ->get();
+        
         $start = idrange::all()->max('end');
         return view('slo::idrange.create')->with(array("courses"=>$courses,"start"=>$start + 1));
     }
@@ -71,7 +82,8 @@ class IdRangeController extends Controller
     {
         $courses = courses::all();
         $data = idrange::find($id);
-        return view('slo::idRange.create')->with(array("data"=>$data,"courses"=>$courses));
+        return view('slo::idRange.create')->with(array("data"=>$data,"courses"=>$courses ,"start"=>$data->start));
+        $start = idrange::all()->max('end');
     }
 
     /**
@@ -98,9 +110,24 @@ class IdRangeController extends Controller
     {
         $list = DB::table('id_ranges')
         ->join('courses', 'courses.course_id', '=', 'id_ranges.course_id')
-        ->select('id_ranges.*', 'courses.course_name')
-        ->where("deleted_at" , "!=" , null)->get();
+        ->leftJoin('students','students.cgsid','=','id_ranges.id')
+        ->select('id_ranges.*', 'courses.course_name' , 'students.cgsid')
+        ->where('id_ranges.deleted_at' , '!=' , null)
+        ->get();
         return view('slo::idRange.trash')->with("list",$list);
+    }
+    public function hold(Request $request)
+    {
+        $idrange = idrange::find($request->idRange_id);
+        
+        $idrange->hold = 1;
+        
+        if($idrange->save()){
+            return response()->json(array('msg'=> 1), 200);
+        }else{
+            return response()->json(array('msg'=> 2), 200);
+        }
+        
     }
     public function trash(Request $request)
     {

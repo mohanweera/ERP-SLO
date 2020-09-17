@@ -64,9 +64,8 @@
                                 Group
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/academic/department/create">Add New Group</a>
-                                <a class="dropdown-item" href="/academic/department">List Departments</a>
-                                <a class="dropdown-item" href="/academic/department/trash">List Departments in Trash</a>
+                                <a class="dropdown-item" href="/addNewGroup">Add New Group</a>
+                                <a class="dropdown-item" href="/groupList">List Groups</a>
                             </div>
                         </li>
 

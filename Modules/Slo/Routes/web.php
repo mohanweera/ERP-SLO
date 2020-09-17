@@ -34,7 +34,11 @@ Route::get('/addNewIdRange/{id}', 'idRangeController@show')->name('idRange.show'
 Route::post('/idRangeAddForm', 'idRangeController@store');
 Route::get('/idRangeList', 'idRangeController@index')->name('idRange.list');
 Route::get('/trashIdRange', 'idRangeController@trash');
+Route::get('/holdIdRange', 'idRangeController@hold');
 Route::get('/idRangeTrashList', 'idRangeController@trashList')->name('idRange.trash');
+
+Route::get('/addNewGroup', 'GroupesController@create')->name('groups.create');
+Route::get('/select/batch2/{id}', 'studentController@loadBatches');
 
 Route::get('/addNewStudent', 'studentController@create')->name('student.create');
 Route::get('/select/departments/{id}', 'studentController@loadDepartments');
@@ -42,3 +46,11 @@ Route::get('/select/courses/{id}', 'studentController@loadCourses');
 Route::get('/select/batch/{id}', 'studentController@loadBatches');
 Route::get('/getDepartmentCode', 'studentController@getDepartmentCode');
 Route::post('/addNewStudent', 'studentController@addNewStudent');
+
+Route::get('/addNewGroup', 'GroupesController@create')->name('groups.create');
+Route::get('/select/batch2/{id}', 'GroupesController@loadBatches');
+Route::post('/addNewGroup', 'GroupesController@store');
+Route::get('/groupList', 'GroupesController@index')->name('groups.list');
+Route::get('/groupsTrashList', 'GroupesController@trashList')->name('groups.trash');
+Route::get('/addGroupTrash', 'GroupesController@trash');
+Route::get('/addNewGroup/{id}', 'GroupesController@show')->name('groups.show');

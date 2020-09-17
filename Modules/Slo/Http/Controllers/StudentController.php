@@ -63,7 +63,7 @@ class StudentController extends Controller
         $batches = DB::table('batches')
         ->select('batches.*')
         ->where('course_id' , '=' , $id)->get();
-         return view('slo::select/batch')->with("batches",$batches);
+         return view('slo::select.batch')->with("batches",$batches);
     }
     /**
      * Store a newly created resource in storage.
@@ -82,7 +82,7 @@ class StudentController extends Controller
         $std->std_title = $request->std_title;
         $std->gender = $request->gender;
         $std->gen_id = 0011100110;
-        $std->cgsid = 1;
+        $std->cgsid = 20;
         if($std->save()){
             $last = Student::all()->max('student_id');
             $stdc = new CourseStudent;

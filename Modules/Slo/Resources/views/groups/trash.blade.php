@@ -5,12 +5,12 @@
 <div class="card-header">
     <div class="row">
         <div class="col-sm-6">
-            <h4 class="header-title">KIU ID Range Trashed List</h4>
+            <h4 class="header-title">KIU Group Trashed List</h4>
         </div>
         <div class="col-sm-6">
             <div class="float-right">
-            <a href="/addNewIdRange" class="btn btn-info"><span class="fa fa-plus"></span> Add New</a>
-            <a href="/idRangeList" class="btn btn-info"><span class="fa fa-list"></span> View List</a>
+                <a href="/groupList" class="btn btn-info"><span class="fa fa-list"></span> View List</a>
+                <a href="/groupsTrashList" class="btn btn-info"><span class="fa fa-trash"></span> View Trash</a>
             </div>
         </div>
     </div>
@@ -19,41 +19,28 @@
     <table id="example1" class="table table-bordered table-striped">
     <thead class="thead-dark">
     <tr>
-    <th>Course</th>
-    <th>Start Number</th>
-    <th>End Number</th>
+    <th>Group Name</th>
+    <th>Batch Name</th>
+    <th>Course Name</th>
+    <th>Semester</th>
+    <th>Year</th>
+    <th>Type</th>
     <th>Action</th>
     </tr>
     </thead>
     <tbody>
     @foreach($list as $results)
     <tr>
+    <td>{{$results->GroupName}}</td>
+    <td>{{$results->batch_name}}</td>
     <td>{{$results->course_name}}</td>
-    <td>{{$results->start}}</td>
-    <td>{{$results->end}}</td>
-    <td class="row">
-    <div class="col-sm">
-    <input type="hidden" class="id" id="id" value="{{$results->id}}">
-    @if($results->cgsid != "")
-    <span class="badge badge-success">Active</span>
-    @endif 
-    </div>
-    <div class="col-sm">
-    @if($results->cgsid == "" && $results->hold == 0)
-        <a href="/addNewIdRange/{{$results->id}}"><div class="btn btn-xs"><span class="fa fa-edit"></span> Edit</div></a>
-    @endif
-    </div>
-    <div class="col-sm">
-    <div class="btn btn-xs trashBut" ><span class="fa fa-window-restore"></span> Restore</div></div>
-    </div>
-    <div class="col-sm">
-    @if($results->hold == 0)
-    <div class="btn btn-xs holdhBut" ><span class="fa fa-pause"></span> Hold</div></div>
-    @else
-    <span class="badge badge-warning"><span class="fa fa-check"></span> Hold</span>
-    @endif
-    </div>
-    </td>
+    <td>{{$results->semester}}</td>
+    <td>{{$results->year}}</td>
+    <td>{{$results->type}}</td>
+    <td>
+      <input type="hidden" class="id" id="id" value="{{$results->GroupID}}">
+      <a href="/addNewGroup/{{$results->GroupID}}"><div class="btn btn-xs"><span class="fa fa-edit"></span> Edit</div></a>
+      <div class="btn btn-xs trashBut" ><span class="fa fa-window-restore"></span> Restore</div></div>
     </tr>
     @endforeach
     </tbody>
@@ -66,7 +53,7 @@
         $(".trashBut").click(function() {
             var row = $(this).closest("tr"),       // Finds the closest row <tr> 
                 tds = row.find("td");
-                idRange_id = tds.find(".id").val();  
+                gid = tds.find(".id").val();  
                 
                 Swal.fire({
                 title: 'Are you sure?',
@@ -80,15 +67,15 @@
                 if (result.value) {
                     $.ajax({
                     type:'GET',
-                    url:'/trashIdRange',
-                    data:{idRange_id:idRange_id},
+                    url:'/addGroupTrash',
+                    data:{gid:gid},
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     success:function(data){
                         if(data.msg == 1){
-                        toastr.success('Restored Successfully');
+                        toastr.success('Trashed Successfully');
                         location.reload();
                         }else{
-                        toastr.error('Restoring Error');
+                        toastr.error('Trashing Error');
                         }
                     },
                     error: function(xhr, status, error) 
@@ -107,7 +94,7 @@
 
             buttons: [
                 { extend: 'copy', 'className': 'button' },
-                { extend: 'csv', className: 'button' },
+                { extend: 'csv', className: 'button ' },
                 { extend: 'excel', className: 'button ' },
                 { extend: 'pdf', className: 'button' },
                 { extend: 'print', className: 'button' }

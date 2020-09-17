@@ -31,10 +31,28 @@
     <td>{{$results->course_name}}</td>
     <td>{{$results->start}}</td>
     <td>{{$results->end}}</td>
-    <td>
+    <td class="row">
+    <div class="col-sm">
     <input type="hidden" class="id" id="id" value="{{$results->id}}">
-    <a href="/addNewIdRange/{{$results->id}}"><div class="btn btn-xs"><span class="fa fa-edit"></span> Edit</div></a>
+    @if($results->cgsid != "")
+    <span class="badge badge-success">Active</span>
+    @endif 
+    </div>
+    <div class="col-sm">
+    @if($results->cgsid == "" && $results->hold == 0)
+        <a href="/addNewIdRange/{{$results->id}}"><div class="btn btn-xs"><span class="fa fa-edit"></span> Edit</div></a>
+    @endif
+    </div>
+    <div class="col-sm">
     <div class="btn btn-xs trashBut" ><span class="fa fa-trash"></span> Trash</div></div>
+    </div>
+    <div class="col-sm">
+    @if($results->hold == 0)
+    <div class="btn btn-xs holdhBut" ><span class="fa fa-pause"></span> Hold</div></div>
+    @else
+    <span class="badge badge-warning"><span class="fa fa-check"></span> Hold</span>
+    @endif
+    </div>
     </td>
     </tr>
     @endforeach
@@ -45,6 +63,45 @@
 </div>
 <script>
     $(document).ready(function () {
+        $(".holdhBut").click(function() {
+            var row = $(this).closest("tr"),       // Finds the closest row <tr> 
+                tds = row.find("td");
+                idRange_id = tds.find(".id").val();  
+                
+                Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to hold this?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, hold it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                    type:'GET',
+                    url:'/holdIdRange',
+                    data:{idRange_id:idRange_id},
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    success:function(data){
+                        if(data.msg == 1){
+                        toastr.success('Hold Successfully');
+                        location.reload();
+                        }else{
+                        toastr.error('Hold Error');
+                        }
+                    },
+                    error: function(xhr, status, error) 
+                        {
+                        $.each(xhr.responseJSON.errors, function (key, item) 
+                        {
+                            Msg['danger'](item);
+                        });
+                        }
+                    });
+                }
+            })
+        });
         $(".trashBut").click(function() {
             var row = $(this).closest("tr"),       // Finds the closest row <tr> 
                 tds = row.find("td");
