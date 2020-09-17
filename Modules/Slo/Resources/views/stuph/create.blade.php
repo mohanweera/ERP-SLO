@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-sm-10">
 
-                            <h4 class="header-title">Upload Category to {{$data->name_initials}}</h4>
+                            <h4 class="header-title">Upload Documents to {{$data->name_initials}}</h4>
 
                         </div>
                         <div class="col-sm-2">
