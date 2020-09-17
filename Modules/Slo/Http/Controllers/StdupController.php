@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Slo\Entities\Student;
 use Modules\Slo\Entities\Uploadc;
 use Modules\Slo\Entities\StudentUp;
+use Carbon\Carbon;
 use DB;
 class StdupController extends Controller
 {
@@ -57,7 +58,7 @@ class StdupController extends Controller
         $imageFileType = pathinfo($location,PATHINFO_EXTENSION);
         $valid_extensions = array("jpg","jpeg");
         if( !in_array(strtolower($imageFileType),$valid_extensions) ) {
-            return response()->json(array('msg'=> "error",'act'=>2), 200);
+            return response()->json(array('msg'=> "File extensions not valid<br/>Only JPG and JPEG",'act'=>2), 200);
         }else{
             move_uploaded_file($_FILES['file']['tmp_name'],$location);
             $ctg = Uploadc::where('cat_code','=', $request->cid)->get();
@@ -65,10 +66,10 @@ class StdupController extends Controller
             $add->file     = $location;
             $add->student  = $request->std_id;
             $add->category = $ctg[0]->upload_cat_id;
-            $add->updated_on  = $request->std_id;
+            $add->updated_on  = Carbon::now();
             $add->save();
             
-            return response()->json(array('msg'=> "success",'act'=>1), 200);
+            return response()->json(array('msg'=> "Uploaded Successfully",'act'=>1), 200);
         }
     }
 
