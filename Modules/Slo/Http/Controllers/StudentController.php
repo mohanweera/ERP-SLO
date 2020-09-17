@@ -13,6 +13,7 @@ use Modules\Slo\Entities\Departments;
 use Modules\Slo\Entities\Student;
 use Modules\Slo\Entities\CourseStudent;
 use Modules\Slo\Entities\Country;
+use Modules\Slo\Entities\idrange;
 use DB;
 class StudentController extends Controller
 {
@@ -47,7 +48,33 @@ class StudentController extends Controller
     {
         //echo $id; return;
         $dep = departments::find($request->dept_id);
-        return response()->json(array('dept_code'=> $dep->dept_code), 200);
+        $slqf = "05";
+        return response()->json(array('dept_code'=> $dep->dept_code,'slqf'=>$slqf), 200);
+    }
+    public function getMiddleId(Request  $request)
+    {
+        //echo $id; return;
+        $batch = batch::find($request->batch_id);
+        $batchType = batchTypes::find($batch->batch_type);
+        $course = Courses::find($batch->course_id);
+        $dep = departments::find($course->dept_id);
+        return response()->json(array('dept_code'=> $dep->dept_code,'batchType_code'=>$batchType->batch_type,'batch_code'=> $batch->batch_code), 200);
+    }
+    public function getStdSeriel(Request  $request)
+    {
+        //echo $id; return;
+        $course = Courses::find($request->course_id);
+        $stdSerial = idrange::all()->where('hold' , '=' , 0)->where('course_id' , '=' , $course->course_id);
+        $serial = 0;
+        foreach($stdSerial as $stdSerial){
+        $serial = $stdSerial->last_id ;
+        }
+        if($serial > 0){
+            return response()->json(array('msg'=>'1','last_id'=>$serial,'idrange'=>$stdSerial->id));
+        }else{
+            return response()->json(array('msg'=>'2','last_id'=> 0));
+        }
+        
     }
     public function loadCourses($id)
     {
@@ -72,6 +99,7 @@ class StudentController extends Controller
      */
     public function addNewStudent(Request $request)
     {
+        
         $std = new Student;
         $std->std_title = $request->std_title;
         $std->full_name = $request->full_name;
@@ -81,8 +109,8 @@ class StudentController extends Controller
         $std->reg_date = $request->reg_date;
         $std->std_title = $request->std_title;
         $std->gender = $request->gender;
-        $std->gen_id = 0011100110;
-        $std->cgsid = 20;
+        $std->gen_id = $request->stdReg;
+        $std->cgsid = $request->idrange;
         if($std->save()){
             $last = Student::all()->max('student_id');
             $stdc = new CourseStudent;

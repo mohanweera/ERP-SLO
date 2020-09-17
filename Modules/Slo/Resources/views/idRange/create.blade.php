@@ -112,6 +112,9 @@
 </div>
 <script>
 $(document).ready(function(){
+    var x = $("#course_id").val();
+    var y = $("#course_id").val();
+    alert(x + y);
     $("#ids").change(function(){
     var start = $(this).find(':selected').data('start');
     var end = $(this).find(':selected').data('end');

@@ -98,7 +98,7 @@
             <span class="info-box-number">
               <h4>
                   <span id="dep_code">00</span><span id="slqf_code">00</span> 
-                  <span id="batch_type_code">00</span><span id="batch_code">000</span>
+                  <span id="dep_code2">00</span><span id="batch_type_code">00</span><span id="batch_code">000</span>
                   <span id="std_id"> 00000</span></h4>
             </span>
 
@@ -125,8 +125,12 @@
                 <!-- /.info-box -->
             </div>
         </div>
-
-
+<div style="display:none">
+<input type="text" id="std1" name="std1" value="">
+<input type="text" id="std2" name="std2" value="">
+<input type="text" id="std3" name="std3" value="">
+<input type="text" id="idrange" name="idrange" value="">
+</div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-navy">

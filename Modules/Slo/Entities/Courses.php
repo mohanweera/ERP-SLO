@@ -8,4 +8,5 @@ class courses extends Model
 {
     protected $fillable = [];
     protected $table = 'courses';
+    protected $primaryKey = 'course_id';
 }

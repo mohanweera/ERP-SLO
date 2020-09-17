@@ -6,6 +6,7 @@
 </select>
 <script>
 $(function () {
+  
 $("#dept_id").change(function(){
     var dept_id = $("#dept_id").val();
     $.ajax({
@@ -15,6 +16,10 @@ $("#dept_id").change(function(){
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       success:function(data){
         $("#dep_code").html(data.dept_code);
+        $("#slqf_code").html(data.slqf);
+        var dep_code = data.dept_code;
+        var slqf = data.slqf;
+        $('#std1').val(dep_code + slqf);
       },
       error: function(xhr, status, error) 
         {

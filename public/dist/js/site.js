@@ -96,8 +96,9 @@ $(document).ready(function(){
 
   ///////////////// Add New Studendt /////
   $("#studentAddForm").submit(function(event){
-    event.preventDefault(); //prevent default action 
+    event.preventDefault(); //prevent default action
     var form_data = new FormData(this); //Creates new FormData object
+    form_data.append('stdReg', $("#std1").val() + $("#std2").val() + $("#std3").val());
     $.ajax({
       type:'POST',
       url:'/addNewStudent',
