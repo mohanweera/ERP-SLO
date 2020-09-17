@@ -67,3 +67,10 @@ Route::get('/upCatTrashList', 'UploadCController@trashList')->name('ct.trash');
 Route::get('/stdUpHome', 'StdupController@index')->name('stdup.index');
 Route::get('/searchUploads', 'StdupController@create')->name('stdup.searchup');
 Route::post('/uploadStd', 'StdupController@store');
+
+Route::get('/hospitalsList', 'HospitalsController@index')->name('hospital.list');
+Route::get('/addNewHospital', 'HospitalsController@create')->name('hospital.create');
+Route::post('/addNewHospital', 'HospitalsController@store');
+Route::get('/addNewHospital/{id}', 'HospitalsController@show')->name('hospital.show');
+Route::get('/hospitalsTrashList', 'HospitalsController@trashList')->name('hospital.trash');
+Route::get('/trashHospital', 'HospitalsController@trash');

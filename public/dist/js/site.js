@@ -63,6 +63,39 @@ $(document).ready(function(){
         }
       });
   });
+  /////////////////  Add New Hospital /////
+  $("#addNewHospital").submit(function(event){
+    event.preventDefault(); //prevent default action 
+    if($("#h_name").val() == ""){
+      return;
+    }
+    var form_data = new FormData(this); //Creates new FormData object
+    $.ajax({
+      type:'POST',
+      url:'/addNewHospital',
+      data : form_data,
+      contentType: false,
+      cache: false,
+      processData:false,
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      success:function(data){
+        if(data.act == 1){
+          toastr.success(data.msg);
+          $('#addNewHospital').trigger("reset");
+        }else{
+          toastr.error(data.msg);
+        }
+        
+      },
+      error: function(xhr, status, error) 
+        {
+          $.each(xhr.responseJSON.errors, function (key, item) 
+          {
+            toastr.danger('Something error');
+          });
+        }
+      });
+  });
   /////////////////  Upload Students Data /////
   $("#uploadStd").submit(function(event){
     event.preventDefault(); //prevent default action 
