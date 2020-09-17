@@ -76,11 +76,11 @@ $(document).ready(function(){
       processData:false,
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       success:function(data){
-        if(data.msg == 1){
-          toastr.success('Category Added Successfully');
+        if(data.act == 1){
+          toastr.success(data.msg);
           $('#uploadCatForm').trigger("reset");
         }else{
-          toastr.error('Category Adding Error');
+          toastr.error(data.msg);
         }
         
       },

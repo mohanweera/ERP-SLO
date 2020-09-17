@@ -5,11 +5,11 @@
 <div class="card-header">
     <div class="row">
         <div class="col-sm-6">
-            <h4 class="header-title">KIU Upload Categories List</h4>
+            <h4 class="header-title">KIU Upload Trashed Categories List</h4>
         </div>
         <div class="col-sm-6">
             <div class="float-right">
-            <a href="/addNewUpCat" class="btn btn-info"><span class="fa fa-plus"></span> Add New</a>
+            <a href="/uploadCtList" class="btn btn-info"><span class="fa fa-list"></span> View List</a>
             <a href="/upCatTrashList" class="btn btn-info"><span class="fa fa-trash"></span> View Trash</a>
             </div>
         </div>
@@ -32,7 +32,7 @@
     <td>
     <input type="hidden" class="id" id="id" value="{{$results->upload_cat_id}}">
     <a href="/addNewUpCat/{{$results->upload_cat_id}}"><div class="btn btn-xs"><span class="fa fa-edit"></span> Edit</div></a>
-    <div class="btn btn-xs trashBut" ><span class="fa fa-trash"></span> Trash</div></div>
+    <div class="btn btn-xs trashBut" ><span class="fa fa-window-restore"></span> Restore</div></div>
     </td>
     </tr>
     @endforeach
@@ -50,12 +50,12 @@
                 
                 Swal.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to trash this?",
+                text: "You won't be able to restore this?",
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, restore it!'
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
@@ -65,10 +65,10 @@
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     success:function(data){
                         if(data.msg == 1){
-                        toastr.success('Trashed Successfully');
+                        toastr.success('Restored Successfully');
                         location.reload();
                         }else{
-                        toastr.error('Trashing Error');
+                        toastr.error('Restoring Error');
                         }
                     },
                     error: function(xhr, status, error) 

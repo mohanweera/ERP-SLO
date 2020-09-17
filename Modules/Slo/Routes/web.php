@@ -60,3 +60,6 @@ Route::get('/addNewGroup/{id}', 'GroupesController@show')->name('groups.show');
 Route::get('/addNewUpCat', 'UploadCController@create')->name('ct.create');
 Route::get('/uploadCtList', 'UploadCController@index')->name('ct.list');
 Route::post('/addNewUC', 'UploadCController@store');
+Route::get('/addNewUpCat/{id}', 'UploadCController@show')->name('ct.show');
+Route::get('/trashUpCt', 'UploadCController@trash');
+Route::get('/upCatTrashList', 'UploadCController@trashList')->name('ct.trash');

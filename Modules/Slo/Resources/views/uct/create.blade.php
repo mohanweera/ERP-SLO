@@ -31,7 +31,11 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="batch_type">Category Code</label>
+                                @if(isset($data))
+                                <input type="text" class="form-control" name="c_code" id="c_code" placeholder="Category Code" required value="{{$data->cat_code ?? ''}}" readonly>
+                                @else
                                 <input type="text" class="form-control" name="c_code" id="c_code" placeholder="Category Code" required value="{{$data->cat_code ?? ''}}">
+                                @endif
                             </div>
                         </div>
                     </div>
