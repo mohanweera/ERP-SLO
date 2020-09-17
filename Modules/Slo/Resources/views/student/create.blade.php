@@ -112,11 +112,14 @@
                     <!-- /.info-box-content -->
                 </div>
 
-                <div class="info-box bg-gradient-danger" id="notifications">
+                <div class="info-box bg-gradient-danger" id="errorN" style="display:none">
                     <span class="info-box-icon"><i class="fas fa-exclamation-triangle"></i></span>
                     <div class="info-box-content">
-                        <span id="noti"></span>
-
+                        <span id=""><h5>ERROR! </h5></span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                        <span id="noti">hh</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>

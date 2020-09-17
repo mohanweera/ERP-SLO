@@ -72,7 +72,11 @@ class StudentController extends Controller
         $serial = $stdSerial->last_id ;
         }
         if($serial > 0){
-            return response()->json(array('msg'=>'1','last_id'=>$serial,'idrange'=>$stdSerial->id));
+            if($stdSerial->last_id == $stdSerial->end){
+                return response()->json(array('msg'=>'1','last_id'=> 0));
+            }else{
+                return response()->json(array('msg'=>'0','last_id'=>$serial,'idrange'=>$stdSerial->id));
+            }
         }else{
             return response()->json(array('msg'=>'2','last_id'=> 0));
         }

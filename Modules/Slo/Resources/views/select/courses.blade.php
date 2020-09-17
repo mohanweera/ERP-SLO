@@ -19,10 +19,20 @@ $(function () {
           $('#std_id').html(serial);
           $('#std3').val(serial);
           $('#idrange').val(data.idrange);
+          $('#errorN').hide();
         }else{
           $('#std_id').html("00000");
           $('#std3').val(0);
           $('#idrange').val('');
+          if(data.msg == 1){
+            $('#errorN').show();
+            $('#noti').html("ID EXCEEDED");
+          }else if(data.msg == 2){
+            $('#errorN').show();
+            $('#noti').html("NO ASSINGED IDS TO THIS COURSE");
+          }else{
+            $('#errorN').hide();
+          }
         }
       },
       error: function(xhr, status, error) 
