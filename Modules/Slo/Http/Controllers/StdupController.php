@@ -30,7 +30,7 @@ class StdupController extends Controller
      */
     public function create(Request $request)
     {
-        $ctg = Uploadc::all();
+        $ctg = Uploadc::where('deleted_at' , '=' , null)->get();
         $count = Student::where('range_id' , '=', $request->stId)->get()->count();
         if($count == 0){
             return view('slo::stuph.create')->with(array('count'=>$count));
