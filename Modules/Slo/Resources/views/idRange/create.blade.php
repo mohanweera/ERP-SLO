@@ -51,6 +51,7 @@
 
                             <!-- <div class="col-sm-4"><input type="number" name="" value="" class="form-control" id="" placeholder="Total" ></div>               -->
                         </div>
+                        @if(!isset($data))
                         <div class="form-group">
                         <span class="btn badge badge-success" id="exportBut">Export Numbers</span>
                         <div id="showSelect" style="display:none">
@@ -63,6 +64,7 @@
                         </select>
                         </div>
                         </div>
+                        @endif
                     <div class="form-group">
                         <div class="form-group row" id="startend">
                             <div class="col-sm-4">

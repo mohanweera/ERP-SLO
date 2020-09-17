@@ -41,7 +41,7 @@ class IdRangeController extends Controller
             'courses.*'
         )
         ->leftJoin('id_ranges','id_ranges.course_id','=','courses.course_id')
-        ->where('id_ranges.course_id' , '=' , null)->orWhere('id_ranges.hold' , '=' , 1)
+        ->whereNull('id_ranges.course_id')->where('id_ranges.hold' , '=' , 1)
         ->get();
         $exId = idrange::where('hold' , '=' , 1)->get();
         $start = idrange::all()->max('end');
