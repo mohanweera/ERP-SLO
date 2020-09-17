@@ -35,6 +35,7 @@ class IdRangeController extends Controller
      */
     public function create()
     {
+        
         $courses = DB::table('courses')
         ->select(
             'courses.*'
@@ -54,14 +55,24 @@ class IdRangeController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->ids !=""){
+        $old = idrange::find($request->ids);
+        $old->end = $request->start2 - 1;
+        $old->save();
+        $start = $request->start2;
+        $end = $request->end2;
+        }else{
+        $start = $request->start;
+        $end = $request->end;
+        }
         if($request->iId !=""){
             $data = idrange::find($request->iId);
         }else{
             $data = new idrange;
         }
         $data->description=$request->description;
-        $data->start=$request->start;
-        $data->end=$request->end;
+        $data->start=$start;
+        $data->end=$end;
         $data->course_id=$request->course_id;
         $data->last_id=$request->start;
         if($data->save()){

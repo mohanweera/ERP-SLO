@@ -58,7 +58,7 @@
                         <select class="form-control " name="ids" id="ids" required>
                         <option value="" data-start="0">Select IDs</option>
                         @foreach($ids as $ids)
-                        <option value="{{$ids->last_id}}" data-start="{{$ids->last_id}}" data-end="{{$ids->end}}">{{$ids->last_id}} - {{$ids->end}}</option>
+                        <option value="{{$ids->id}}" data-start="{{$ids->last_id}}" data-end="{{$ids->end}}">{{$ids->last_id}} - {{$ids->end}}</option>
                         @endforeach
                         </select>
                         </div>
@@ -78,13 +78,13 @@
                         </div>
                         <div class="form-group row" id="startend2" style="display:none">
                             <div class="col-sm-4">
-                            <input type="number" name="start2"  class="form-control" id="start2" placeholder="Start Number" required value="{{$start}}" min="{{$start}}">
+                            <input type="number" name="start2"  class="form-control" id="start2" placeholder="Start Number" required >
                             </div>
                             <div class="col-sm-4">
                                 @if(isset($data))
                                 <input type="number" name="end2"  class="form-control" id="end2" placeholder="End Number" required="required" value="{{$data->end ?? ''}}"  readonly>
                                 @else
-                                <input type="number" name="end2"  class="form-control" id="end2" placeholder="End Number" required="required" value="{{$data->end ?? ''}}" readonly  min="{{$start}}">
+                                <input type="number" name="end2"  class="form-control" id="end2" placeholder="End Number" required="required" value="{{$data->end ?? ''}}" readonly>
                                 @endif
                             </div>
                         </div>
