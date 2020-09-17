@@ -47,7 +47,20 @@ class StdupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(!is_dir('students/'.$request->range_id . '/' . $request->cid)){
+            mkdir('students/'.$request->range_id . '/' . $request->cid);
+        }
+
+        $filename  = $_FILES['file']['name'];
+        $location = 'students/'.$request->range_id . '/' . $request->cid . '/' . $filename;
+        $imageFileType = pathinfo($location,PATHINFO_EXTENSION);
+        $valid_extensions = array("jpg","jpeg");
+        if( !in_array(strtolower($imageFileType),$valid_extensions) ) {
+            return response()->json(array('msg'=> "error",'act'=>2), 200);
+        }else{
+            move_uploaded_file($_FILES['file']['tmp_name'],$location);
+            return response()->json(array('msg'=> "success",'act'=>1), 200);
+        }
     }
 
     /**

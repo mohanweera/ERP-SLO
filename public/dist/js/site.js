@@ -63,6 +63,36 @@ $(document).ready(function(){
         }
       });
   });
+  /////////////////  Upload Students Data /////
+  $("#uploadStd").submit(function(event){
+    event.preventDefault(); //prevent default action 
+    var form_data = new FormData(this); //Creates new FormData object
+    $.ajax({
+      type:'POST',
+      url:'/uploadStd',
+      data : form_data,
+      contentType: false,
+      cache: false,
+      processData:false,
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      success:function(data){
+        if(data.act == 1){
+          toastr.success(data.msg);
+          $('#uploadStd').trigger("reset");
+        }else{
+          toastr.error(data.msg);
+        }
+        
+      },
+      error: function(xhr, status, error) 
+        {
+          $.each(xhr.responseJSON.errors, function (key, item) 
+          {
+            toastr.danger('Something error');
+          });
+        }
+      });
+  });
   ///////////////// Add Upload Category /////
   $("#uploadCatForm").submit(function(event){
     event.preventDefault(); //prevent default action 

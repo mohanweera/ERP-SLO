@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid behind">
 @if($count > 0)
-<form class="form-label-left input_mask needs-validation" method="post" action="" id="addNewBatchTypes" novalidate>
+<form class="form-label-left input_mask needs-validation" method="post" action="" id="uploadStd" novalidate>
     @csrf
     <input type="hidden" name="tId" id="tId" value="{{$batchData->id ?? ''}}">
     <div class="row">
@@ -23,13 +23,13 @@
                     </div>
                 </div>
                 <div class="card-body">
-
+                    <input type="text" name="range_id" id="range_id" value="{{$data->range_id}}" style="display:none">
                     <div class="form-group">
                         <label for="course_id">Upload Categories</label>
                         <select class="form-control " name="cid" id="cid" required data-dependent="start">
                             <option value="">Upload Categories</option>
                             @foreach($ctg as $ctg)
-                            <option value="{{$ctg->upload_cat_id}}">{{$ctg->category_name}}</option>
+                            <option value="{{$ctg->cat_code}}">{{$ctg->category_name}}</option>
                             @endforeach
                         </select>
                     </div>
