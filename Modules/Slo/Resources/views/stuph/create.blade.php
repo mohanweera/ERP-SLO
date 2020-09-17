@@ -24,6 +24,7 @@
                 </div>
                 <div class="card-body">
                     <input type="text" name="range_id" id="range_id" value="{{$data->range_id}}" style="display:none">
+                    <input type="text" name="std_id" id="std_id" value="{{$data->student_id}}" style="display:none">
                     <div class="form-group">
                         <label for="course_id">Upload Categories</label>
                         <select class="form-control " name="cid" id="cid" required data-dependent="start">
