@@ -1,12 +1,6 @@
 @extends('slo::layouts.master')
 @section('content')
-@if(isset($cid))
-<script>
-    $(document).ready(function () {
-        $("#course_id").val("{{$cid}}");
-    });
-</script>
-@endif
+
 <div class="container-fluid behind">
 <form class="form-label-left input_mask needs-validation" method="POST" action="k" id="addFieldstoC" novalidate>
 @csrf
@@ -18,7 +12,7 @@
                     <div class="row">
                         <div class="col-sm-6">
 
-                            <h4 class="header-title">Manage Course Requirements</h4>
+                            <h4 class="header-title">Genaral Form Requirements</h4>
 
                         </div>
                         <div class="col-sm-6">
@@ -29,20 +23,6 @@
                     </div>
                 </div>
                 <div class="card-body">
-                
-                <div class="row">
-                <div class="col-md-7">
-                    <div class="form-group">
-                        <label for="course">Select Course</label>
-                        <select class="form-control " name="course_id" id="course_id" required>
-                            <option value="">Select Course</option>
-                            @foreach($courses as $course)
-                            <option value="{{$course->course_id}}">{{$course->course_name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="course">Types</label>
@@ -55,8 +35,7 @@
                         </div>
                     </div>
                 </div>
-                
-                </div>
+                <hr/>
                 <div id="new_chq"></div>
                 @if($count !=0)
                 @foreach($data as $data)

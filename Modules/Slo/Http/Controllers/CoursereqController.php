@@ -20,7 +20,13 @@ class CoursereqController extends Controller
      */
     public function index()
     {
-        return view('slo::index');
+        $count = inputf::where('course_id' , '=' , 0)->get()->count();
+        $data = inputf::where("course_id" , "=" , 0)->get();
+        if($count == 0){
+            return view('slo::coursereq.index')->with(array('count'=>$count));
+        }else{
+            return view('slo::coursereq.index')->with(array( "data"=>$data,'count'=>$count));
+        }
     }
 
     /**
@@ -48,7 +54,11 @@ class CoursereqController extends Controller
                 $input->fname = $request->$fname;
                 $ftype = "fieldType_" . $x;
                 $input->fid = $request->$ftype;
-                $input->course_id = $request->course_id;
+                if($request->course_id == 0){
+                    $input->course_id = 0;
+                }else{
+                    $input->course_id = $request->course_id;
+                }
                 $inname = str_replace(' ', '', $request->$fname);
                 $input->inputname = $inname;
                 $input->save();
