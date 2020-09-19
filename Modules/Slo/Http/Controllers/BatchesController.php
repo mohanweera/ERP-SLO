@@ -56,6 +56,8 @@ class BatchesController extends Controller
         $data->batch_start_date = $request->batch_start_date;
         $data->batch_end_date = $request->batch_end_date;
         $data->batch_code = $request->batch_code;
+        $data->RS_Date = $request->rs_date;
+        $data->RE_Date = $request->re_date;
         if($data->save()){
             return response()->json(array('msg'=> 1), 200);
         }else{

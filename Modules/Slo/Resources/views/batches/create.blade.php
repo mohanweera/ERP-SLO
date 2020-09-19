@@ -97,8 +97,20 @@
                                 <input type="date" class="form-control" name="batch_end_date" id="batch_end_date" required value="{{$batchData->batch_end_date ?? ''}}">
                             </div>
                         </div>
-
-
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="batch_start_date">Registrations Start Date</label>
+                                <input type="date" class="form-control" name="rs_date" id="rs_date" required value="{{$batchData->RS_Date ?? ''}}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="batch_end_date">Registration End Date</label>
+                                <input type="date" class="form-control" name="re_date" id="re_date" required value="{{$batchData->RE_Date ?? ''}}">
+                            </div>
+                        </div>
                     </div>
                     <hr class="mt-1 mb-2">
 
