@@ -10,6 +10,7 @@
 </script>
 @endif
 <div class="container-fluid behind">
+
 <form  class="form-label-left input_mask needs-validation" method="post" action="" id="batchAddForm" novalidate>
 @csrf
 <input type="hidden" name="bId" id="bId" value="{{$batchData->batch_id ?? ''}}">
@@ -121,6 +122,19 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="loading" style="display:none">
+            <div class="card-body" align="center">
+            <div class="spinner-grow text-muted"></div>
+            <div class="spinner-grow text-primary"></div>
+            <div class="spinner-grow text-success"></div>
+            <div class="spinner-grow text-info"></div>
+            <div class="spinner-grow text-warning"></div>
+            <div class="spinner-grow text-danger"></div>
+            <div class="spinner-grow text-secondary"></div>
+            <div class="spinner-grow text-dark"></div>
+            <div class="spinner-grow text-light"></div>
+            </div>
             </div>
         </div>
     </div>

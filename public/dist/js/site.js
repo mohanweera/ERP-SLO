@@ -190,6 +190,8 @@ $(document).ready(function(){
   ///////////////// Add Batches /////
   $("#batchAddForm").submit(function(event){
     event.preventDefault(); //prevent default action 
+    $(".card").hide();
+    $(".loading").show();
     var form_data = new FormData(this); //Creates new FormData object
     $.ajax({
       type:'POST',
@@ -201,6 +203,8 @@ $(document).ready(function(){
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       success:function(data){
         if(data.msg == 1){
+          $(".loading").hide();
+          $(".card").show();
           toastr.success('Batch Added Successfully');
           $('#batchAddForm').trigger("reset");
         }else{

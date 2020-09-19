@@ -43,6 +43,19 @@
     </table>
 </div>
 </div>
+<div class="loading" style="display:none">
+<div class="card-body" align="center">
+<div class="spinner-grow text-muted"></div>
+<div class="spinner-grow text-primary"></div>
+<div class="spinner-grow text-success"></div>
+<div class="spinner-grow text-info"></div>
+<div class="spinner-grow text-warning"></div>
+<div class="spinner-grow text-danger"></div>
+<div class="spinner-grow text-secondary"></div>
+<div class="spinner-grow text-dark"></div>
+<div class="spinner-grow text-light"></div>
+</div>
+</div>
 </div>
 <script>
     $(document).ready(function () {
@@ -62,6 +75,8 @@
                 confirmButtonText: 'Yes, restore it!'
             }).then((result) => {
                 if (result.value) {
+                    $(".card").hide();
+                    $(".loading").show();
                     $.ajax({
                     type:'GET',
                     url:'/trashBatch',
