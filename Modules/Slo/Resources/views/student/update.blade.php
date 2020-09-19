@@ -64,30 +64,20 @@
                     </div>
                 </div>
                 <div class="card-body collapse" id="gc">
-
+                @foreach($genaral as $genaral)
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <div class="form-group">
-                                <label for="batch_type">Batch Type Code</label>
-                                @if(isset($batchData))
-                                <input type="number" class="form-control" name="batch_type" id="batch_type" value="{{$batchData->batch_type ?? ''}}" readonly required>
-                                @else
-                                <input type="number" class="form-control" name="batch_type" id="batch_type"
-                                       placeholder="00" pattern="[0-9]{2}" title="two number code" value="" required>
+                                <label for="type">{{$genaral->fname}}</label>
+                                @if($genaral->fid == 1)
+                                <input type="text" class="form-control" name="{{$genaral->inputname}}" id="{{$genaral->inputname}}" value="" required>
+                                @elseif($genaral->fid == 2)
+                                <textarea class="form-control" name="{{$genaral->inputname}}" id="{{$genaral->inputname}}" required></textarea>
                                 @endif
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea class="form-control" name="description" id="description" required>{{$batchData->description ?? ''}}</textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    
+                @endforeach 
                 </div>
             </div>
             <div class="card">
@@ -106,30 +96,20 @@
                     </div>
                 </div>
                 <div  class="card-body collapse" id="sc">
-
+                @foreach($special as $special)
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <div class="form-group">
-                                <label for="batch_type">Batch Type Code</label>
-                                @if(isset($batchData))
-                                <input type="number" class="form-control" name="batch_type" id="batch_type" value="{{$batchData->batch_type ?? ''}}" readonly required>
-                                @else
-                                <input type="number" class="form-control" name="batch_type" id="batch_type"
-                                       placeholder="00" pattern="[0-9]{2}" title="two number code" value="" required>
+                                <label for="type">{{$special->fname}}</label>
+                                @if($special->fid == 1)
+                                <input type="text" class="form-control" name="{{$special->inputname}}" id="{{$special->inputname}}" value="" required>
+                                @elseif($special->fid == 2)
+                                <textarea class="form-control" name="{{$special->inputname}}" id="{{$special->inputname}}" required></textarea>
                                 @endif
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea class="form-control" name="description" id="description" required>{{$batchData->description ?? ''}}</textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    
+                @endforeach 
                 </div>
             </div>
             <div class="card">

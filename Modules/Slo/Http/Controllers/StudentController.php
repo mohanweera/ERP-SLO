@@ -15,6 +15,7 @@ use Modules\Slo\Entities\CourseStudent;
 use Modules\Slo\Entities\Country;
 use Modules\Slo\Entities\idrange;
 use Modules\Slo\Entities\Slqfstr;
+use Modules\Slo\Entities\inputf;
 use DB;
 class StudentController extends Controller
 {
@@ -150,7 +151,11 @@ class StudentController extends Controller
     public function show($id)
     {
         $Student = Student::find($id);
-        return view('slo::student.update')->with(array("Student"=> $Student));
+        $course_id = CourseStudent::where('student_id' , '=' , $id)->get();
+        $cid = $course_id[0]->course_id;
+        $genaral = inputf::where('course_id' , '=' , 0)->get();
+        $special = inputf::where('course_id' , '=' , $cid)->get();
+        return view('slo::student.update')->with(array("Student"=> $Student,'genaral'=>$genaral,'special'=>$special));
     }
 
     /**
