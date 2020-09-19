@@ -10,7 +10,7 @@
 </script>
 @endif
 <div class="container-fluid behind">
-<form class="form-label-left input_mask needs-validation" method="post" action="" id="batchAddForm" novalidate>
+<form  class="form-label-left input_mask needs-validation" method="post" action="" id="batchAddForm" novalidate>
 @csrf
 <input type="hidden" name="bId" id="bId" value="{{$batchData->batch_id ?? ''}}">
     <div class="row">
@@ -116,7 +116,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-add-row">Save</button>
+                            <button type="submit" class="btn btn-success btn-add-row" id="aa">Save</button>
                             <button class="btn btn-dark" type="reset">Reset</button>
                         </div>
                     </div>
@@ -127,5 +127,9 @@
 
 </form>
 </div>
+<script>
 
+  //$("#batchAddForm").load();
+
+</script>
 @endsection
