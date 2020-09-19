@@ -5,7 +5,7 @@
 <div class="card-header">
     <div class="row">
         <div class="col-sm-6">
-            <h4 class="header-title">KIU Batch List</h4>
+            <h4 class="header-title">Student List</h4>
         </div>
         <div class="col-sm-6">
             <div class="float-right">
@@ -19,25 +19,22 @@
     <table id="data-table" class="table table-bordered table-striped">
     <thead class="thead-dark">
     <tr>
-    <th>BATCH CODE</th>
-    <th>COURSE</th>
-    <th>BATCH</th>
-	<th>ACTION</th>
+    <th>Student Admission Number</th>
+    <th>Student Name</th>
+	<th>Action</th>
     </tr>
     </thead>
     <tbody>
-    @foreach($list as $results)
+    
     <tr>
-    <td>{{$results->batch_code}}</td>
-    <td>{{$results->course_name}}</td>
-	<td>{{$results->batch_name}}</td>
+    <td></td>
+    <td></td>
     <td>
-    <input type="hidden" class="id" id="id" value="{{$results->batch_id}}">
-    <a href="/addNewBatch/{{$results->batch_id}}"><div class="btn btn-xs"><span class="fa fa-edit"></span> Edit</div></a>
+    <input type="hidden" class="id" id="id" value="">
+    <a href="/addNewBatch/"><div class="btn btn-xs"><span class="fa fa-edit"></span> Edit</div></a>
     <div class="btn btn-xs trashBut" ><span class="fa fa-trash"></span> Trash</div></div>
     </td>
     </tr>
-    @endforeach
     </tbody>
     </table>
 </div>

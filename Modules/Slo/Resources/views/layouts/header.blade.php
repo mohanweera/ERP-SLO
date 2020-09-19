@@ -54,7 +54,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/addNewStudent">Add New Student</a>
-                                <a class="dropdown-item" href="">Update Student Full Details</a>
+                                <a class="dropdown-item" href="/studentsList">Update Student Full Details</a>
                                 <a class="dropdown-item" href="/stdUpHome">Student Upload Home</a>
                             </div>
                         </li>

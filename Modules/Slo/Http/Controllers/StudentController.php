@@ -24,7 +24,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('slo::student.create');
+        
+        return view('slo::student.index');
     }
 
     /**
@@ -148,7 +149,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        return view('slo::show');
+        $Student = Student::find($id);
+        return view('slo::student.update')->with(array("Student"=> $Student));
     }
 
     /**

@@ -47,6 +47,8 @@ Route::get('/select/batch/{id}', 'studentController@loadBatches');
 Route::get('/getDepartmentCode', 'studentController@getDepartmentCode');
 Route::get('/getStdSeriel', 'studentController@getStdSeriel');
 Route::get('/getMiddleId', 'studentController@getMiddleId');
+Route::get('/studentsList', 'studentController@index');
+Route::get('/stdUpdate/{id}', 'studentController@show');
 Route::post('/addNewStudent', 'studentController@addNewStudent');
 
 Route::get('/addNewGroup', 'GroupesController@create')->name('groups.create');
