@@ -55,10 +55,11 @@
                     </div>
                 </div>
                 </div>
-                <div id="new_chq">
+                <div id="new_chq"></div>
                 @if($count !=0)
                 @foreach($data as $data)
                 <div class='row'>
+                <input type="hidden" class="id" id="id" value="{{$data->id}}">
                 <div class='col-2'>
                 <label for="course">{{$data->fname}}</label>
                 </div>
@@ -69,11 +70,12 @@
                 <textarea  class='form-control' disabled rows='4'></textarea>
                 @endif
                 </div>
+                <span class='btn btn-danger col-1 deleteBut' id='deleteBut'>Del</span>
                 </div>
                 <br/>
                 @endforeach
                 @endif
-                </div>
+                
                     <input type="hidden" value="0" id="total_des" name="total_des" class="form-control col-3">
                     <input type="hidden" value="0" id="total_chq" name="total_chq" class="form-control col-4">
                     <!-- /.card-body -->
@@ -97,6 +99,44 @@
 </div>
 <script>
 $(document).ready(function(){
+    $(".deleteBut").click(function() {
+            var row = $(this).closest(".row"),       // Finds the closest row <tr> 
+                fid = row.find(".id").val();  
+                
+                Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to delete this?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                    type:'GET',
+                    url:'/delField',
+                    data:{fid:fid},
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    success:function(data){
+                        if(data.msg == 1){
+                        toastr.success('Deleted Successfully');
+                        location.reload();
+                        }else{
+                        toastr.error('Deleting Error');
+                        }
+                    },
+                    error: function(xhr, status, error) 
+                        {
+                        $.each(xhr.responseJSON.errors, function (key, item) 
+                        {
+                            Msg['danger'](item);
+                        });
+                        }
+                    });
+                }
+            })
+        });
 $("#course_id").change(function(){
     var course_id = $("#course_id").val();
     location.href = "/courseReq/" + course_id;

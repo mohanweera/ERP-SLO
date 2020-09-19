@@ -78,3 +78,4 @@ Route::get('/trashHospital', 'HospitalsController@trash');
 Route::get('/courseReq', 'CoursereqController@create')->name('courseReq.create');
 Route::get('/courseReq/{id}', 'CoursereqController@show')->name('courseReq.show');
 Route::post('/addFieldstoC', 'CoursereqController@store');
+Route::get('/delField', 'CoursereqController@destroy');

@@ -101,8 +101,13 @@ class CoursereqController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $inputf = inputf::find($request->fid);
+        if($inputf->delete()){
+            return response()->json(array('msg'=> 1), 200);
+        }else{
+            return response()->json(array('msg'=> 2), 200);
+        }
     }
 }
