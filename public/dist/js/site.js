@@ -35,11 +35,8 @@ $(document).ready(function(){
   });
   ///////////////// Add Batch Types /////
   $("#addNewBatchTypes").submit(function(event){
-    event.preventDefault(); //prevent default action
-    //if($("")) 
+    event.preventDefault(); //prevent default action 
     var form_data = new FormData(this); //Creates new FormData object
-   // $(".card").hide();
-    //$(".loading").show();
     $.ajax({
       type:'POST',
       url:'/addNewBatchTypes',
@@ -52,8 +49,6 @@ $(document).ready(function(){
         if(data.msg == 1){
           toastr.success('Batch Type Added Successfully');
           $('#addNewBatchTypes').trigger("reset");
-          $(".card").show();
-          $(".loading").hide();
         }else{
           toastr.error('Batch Type Adding Error');
         }
@@ -195,8 +190,6 @@ $(document).ready(function(){
   ///////////////// Add Batches /////
   $("#batchAddForm").submit(function(event){
     event.preventDefault(); //prevent default action 
-    $(".card").hide();
-    $(".loading").show();
     var form_data = new FormData(this); //Creates new FormData object
     $.ajax({
       type:'POST',
@@ -208,8 +201,6 @@ $(document).ready(function(){
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       success:function(data){
         if(data.msg == 1){
-          $(".loading").hide();
-          $(".card").show();
           toastr.success('Batch Added Successfully');
           $('#batchAddForm').trigger("reset");
         }else{
