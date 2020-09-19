@@ -44,16 +44,19 @@
                     </div>
                 </div>
                 
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="course">Types</label>
-                        <select class="form-control " name="fields" id="fields" required>
+                        <div class="row">
+                        <select class="form-control col-md-9" name="fields" id="fields" required>
                             <option value="1">Input Field</option>
                             <option value="2">Textarea</option>
                         </select>
-                        <span id="fieldsadd" name="fieldsadd" class="btn btn-info">ADD</span>
+                         <span id="fieldsadd" name="fieldsadd" class="btn btn-info col-md-3">ADD</span>
+                        </div>
                     </div>
                 </div>
+                
                 </div>
                 <div id="new_chq"></div>
                 @if($count !=0)
