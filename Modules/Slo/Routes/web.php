@@ -74,3 +74,7 @@ Route::post('/addNewHospital', 'HospitalsController@store');
 Route::get('/addNewHospital/{id}', 'HospitalsController@show')->name('hospital.show');
 Route::get('/hospitalsTrashList', 'HospitalsController@trashList')->name('hospital.trash');
 Route::get('/trashHospital', 'HospitalsController@trash');
+
+Route::get('/courseReq', 'CoursereqController@create')->name('courseReq.create');
+Route::get('/courseReq/{id}', 'CoursereqController@show')->name('courseReq.show');
+Route::post('/addFieldstoC', 'CoursereqController@store');
