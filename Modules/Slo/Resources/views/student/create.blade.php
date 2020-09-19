@@ -4,7 +4,7 @@
 
 <div class="container-fluid behind">
 
-    <form class="form-label-left input_mask z" method="post" action="" id="studentAddForm">
+    <form class="form-label-left input_mask needs-validation" method="post" action="" id="studentAddForm" novalidate>
         @csrf
         <div class="row">
             <div class="col-md-8">
@@ -29,7 +29,7 @@
                             <label class="col-form-label col-md-2 col-sm-2 ">Department </label>
                             <div class="col-md-10 col-sm-10 " id="loadDep">
                                 <select class="form-control myDropdown" name="dept_id" id="dept_id" required>
-                                    <option>Select Department</option>
+                                    <option value="">Select Department</option>
                                 </select>
 
                             </div>
@@ -47,7 +47,7 @@
                             </label>
                             <div class="col-md-10 col-sm-10 " id="loadBatch">
                                 <select class="form-control myDropdown" name="batch_id" id="batch_id" required>
-                                    <option>Select Batch</option>
+                                    <option value="">Select Batch</option>
                                    
                                 </select>
                             </div>
@@ -150,7 +150,7 @@
                                             name="std_title"
                                             id="std_title"
                                             style="width:144px">
-                                        <option>Select Title</option>
+                                        <option value="">Select Title</option>
                                         <option value="Mr">Mr.</option>
                                         <option value="Ms">Ms.</option>
                                         <option value="Mrs">Mrs.</option>
@@ -217,7 +217,7 @@
                                     </div>
                                     <input type="date" class="form-control myDropdown"
                                            placeholder="Initial Starting Date"
-                                           name="reg_date">
+                                           name="reg_date" required>
                                 </div>
                                 <br>
                             </div>

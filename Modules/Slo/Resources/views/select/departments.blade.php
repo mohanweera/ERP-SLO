@@ -1,4 +1,4 @@
-<select class="form-control myDropdown" name="dept_id" id="dept_id" >
+<select class="form-control myDropdown" name="dept_id" id="dept_id" required>
 <option value="">Select Department</option>
 @foreach($dep as $dep)
 <option value="{{$dep->dept_id}}">{{$dep->dept_name}}</option>

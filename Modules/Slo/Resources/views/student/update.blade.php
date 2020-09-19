@@ -68,7 +68,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span></div>
                                     <select class="form-control col-lg-12 " required="required" name="std_title" id="std_title" style="width:144px">
-                                        <option>Select Title</option>
+                                        <option value="">Select Title</option>
                                         <option value="Mr">Mr.</option>
                                         <option value="Ms">Ms.</option>
                                         <option value="Mrs">Mrs.</option>
@@ -118,7 +118,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                     </div>
-                                    <input type="date" class="form-control " placeholder="Initial Starting Date" name="reg_date">
+                                    <input type="date" class="form-control " placeholder="Initial Starting Date" name="reg_date" required>
                                 </div>
                                 <br>
                             </div>
