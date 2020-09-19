@@ -133,7 +133,7 @@
                                 </div>
                                 <label for="batch_type">Mobile No</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control mobile " name="tel_mobile1" placeholder="Mobile No eg:0711234567" pattern="[0]{1}[0-9]{9}" required="required">
+                                    <input type="number" class="form-control mobile " name="tel_mobile1" placeholder="Mobile No eg:0711234567" pattern="[0]{1}[0-9]{9}" required="required">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>
