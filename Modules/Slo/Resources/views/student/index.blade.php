@@ -31,7 +31,7 @@
     <td></td>
     <td>
     <input type="hidden" class="id" id="id" value="">
-    <a href="/addNewBatch/"><div class="btn btn-xs"><span class="fa fa-edit"></span> Edit</div></a>
+    <a href="/stdUpdate/1"><div class="btn btn-xs"><span class="fa fa-edit"></span> Edit</div></a>
     <div class="btn btn-xs trashBut" ><span class="fa fa-trash"></span> Trash</div></div>
     </td>
     </tr>
