@@ -125,10 +125,15 @@ class StudentController extends Controller
             $stdc = new CourseStudent;
             $stdc->course_id = $request->course_id;
             $stdc->student_id = $last;
+            
             if($stdc->save()){
                 $idr = idrange::find($request->idrange);
                 $idr->last_id = $request->std3 + 1;
                 $idr->save();
+                $stdb = new batch;
+                $stdb->batch_id = $request->batch_id;
+                $stdb->student_id = $last;
+                $stdb->save();
                 if(!is_dir('students')){
                     mkdir('students');
                 }
