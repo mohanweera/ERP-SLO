@@ -82,3 +82,5 @@ Route::get('/courseReq/{id}', 'CoursereqController@show')->name('courseReq.show'
 Route::post('/addFieldstoC', 'CoursereqController@store');
 Route::get('/delField', 'CoursereqController@destroy');
 Route::get('/genaralReq', 'CoursereqController@index');
+
+Route::get('/courseCategoryTypes', 'CoursecategorytypesController@index')->name('hospital.list');
