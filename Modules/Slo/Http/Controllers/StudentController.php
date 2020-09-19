@@ -155,12 +155,21 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        $Student = Student::find($id);
-        $course_id = CourseStudent::where('student_id' , '=' , $id)->get();
-        $cid = $course_id[0]->course_id;
+         $data = DB::table('students')
+        ->join('course_student', 'course_student.student_id', '=', 'students.student_id')
+        ->join('batch_student', 'batch_student.student_id', '=', 'students.student_id')
+        ->join('courses', 'courses.course_id', '=', 'course_student.course_id')
+        ->join('batches', 'batches.batch_id', '=', 'batch_student.batch_id')
+        ->join('departments', 'departments.dept_id', '=', 'courses.dept_id')
+        ->join('faculties', 'faculties.faculty_id', '=', 'departments.faculty_id')
+        ->select('students.*', 'batches.batch_name', 'courses.course_name', 'departments.dept_name', 'faculties.faculty_name','courses.course_id')
+        ->get();
+        
+        //echo $data; return;
+        $cid = $data[0]->course_id;
         $genaral = inputf::where('course_id' , '=' , 0)->get();
         $special = inputf::where('course_id' , '=' , $cid)->get();
-        return view('slo::student.update')->with(array("Student"=> $Student,'genaral'=>$genaral,'special'=>$special));
+        return view('slo::student.update')->with(array("Student"=> $data[0],'genaral'=>$genaral,'special'=>$special));
     }
 
     /**
