@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Slo\Entities\Courses;
 use Modules\Slo\Entities\Groupes;
 use Modules\Slo\Entities\Batch;
-use Modules\Slo\Entities\inputf;
+use Modules\Slo\Entities\Inputf;
 use Carbon\Carbon;
 use DB;
 
@@ -20,8 +20,8 @@ class CoursereqController extends Controller
      */
     public function index()
     {
-        $count = inputf::where('course_id' , '=' , 0)->get()->count();
-        $data = inputf::where("course_id" , "=" , 0)->get();
+        $count = Inputf::where('course_id' , '=' , 0)->get()->count();
+        $data = Inputf::where("course_id" , "=" , 0)->get();
         if($count == 0){
             return view('slo::coursereq.index')->with(array('count'=>$count));
         }else{
@@ -50,7 +50,7 @@ class CoursereqController extends Controller
         for($x=1; $x <= $request->total_des; $x++){
             $fname = "new_" . $x;
             if($request->$fname !=""){
-                $input = new inputf;
+                $input = new Inputf;
                 $input->fname = $request->$fname;
                 $ftype = "fieldType_" . $x;
                 $input->fid = $request->$ftype;
@@ -75,8 +75,8 @@ class CoursereqController extends Controller
     public function show($id)
     {
         $courses = Courses::all();
-        $count = inputf::where('course_id' , '=' , $id)->get()->count();
-        $data = inputf::where("course_id" , "=" , $id)->get();
+        $count = Inputf::where('course_id' , '=' , $id)->get()->count();
+        $data = Inputf::where("course_id" , "=" , $id)->get();
         if($count == 0){
             return view('slo::coursereq.create')->with(array("courses"=>$courses , 'count'=>$count,'cid'=> $id));
         }else{
@@ -113,7 +113,7 @@ class CoursereqController extends Controller
      */
     public function destroy(Request $request)
     {
-        $inputf = inputf::find($request->fid);
+        $inputf = Inputf::find($request->fid);
         if($inputf->delete()){
             return response()->json(array('msg'=> 1), 200);
         }else{

@@ -17,7 +17,8 @@ class CreateGroupesTable extends Migration
             $table->bigIncrements('GroupID');
             $table->string('GroupName')->nullable();
             $table->integer('BatchID');
-            $table->integer('CourseID');
+            $table->foreign('CourseID')->references('course_id')->on('courses')->onDelete('cascade');
+            $table->unsignedBigInteger('CourseID');
             $table->string('semester')->nullable();
             $table->year("year")->nullable();
             $table->string("type")->nullable();

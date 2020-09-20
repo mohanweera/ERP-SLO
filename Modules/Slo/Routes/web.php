@@ -29,27 +29,27 @@ Route::get('/batchList', 'BatchesController@index')->name('batches.list');
 Route::get('/trashBatch', 'BatchesController@trash');
 Route::get('/batchTrashList', 'BatchesController@trashList')->name('batches.trash');
 
-Route::get('/addNewIdRange', 'idRangeController@create')->name('idRange.create');
-Route::get('/addNewIdRange/{id}', 'idRangeController@show')->name('idRange.show');
-Route::post('/idRangeAddForm', 'idRangeController@store');
-Route::get('/idRangeList', 'idRangeController@index')->name('idRange.list');
-Route::get('/trashIdRange', 'idRangeController@trash');
-Route::get('/holdIdRange', 'idRangeController@hold');
-Route::get('/idRangeTrashList', 'idRangeController@trashList')->name('idRange.trash');
+Route::get('/addNewIdRange', 'IdRangeController@create')->name('idRange.create');
+Route::get('/addNewIdRange/{id}', 'IdRangeController@show')->name('idRange.show');
+Route::post('/idRangeAddForm', 'IdRangeController@store');
+Route::get('/idRangeList', 'IdRangeController@index')->name('idRange.list');
+Route::get('/trashIdRange', 'IdRangeController@trash');
+Route::get('/holdIdRange', 'IdRangeController@hold');
+Route::get('/idRangeTrashList', 'IdRangeController@trashList')->name('idRange.trash');
 
 Route::get('/addNewGroup', 'GroupesController@create')->name('groups.create');
-Route::get('/select/batch2/{id}', 'studentController@loadBatches');
+Route::get('/select/batch2/{id}', 'StudentController@loadBatches');
 
-Route::get('/addNewStudent', 'studentController@create')->name('student.create');
-Route::get('/select/departments/{id}', 'studentController@loadDepartments');
-Route::get('/select/courses/{id}', 'studentController@loadCourses');
-Route::get('/select/batch/{id}', 'studentController@loadBatches');
-Route::get('/getDepartmentCode', 'studentController@getDepartmentCode');
-Route::get('/getStdSeriel', 'studentController@getStdSeriel');
-Route::get('/getMiddleId', 'studentController@getMiddleId');
-Route::get('/studentsList', 'studentController@index');
-Route::get('/stdUpdate/{id}', 'studentController@show');
-Route::post('/addNewStudent', 'studentController@addNewStudent');
+Route::get('/addNewStudent', 'StudentController@create')->name('student.create');
+Route::get('/select/departments/{id}', 'StudentController@loadDepartments');
+Route::get('/select/courses/{id}', 'StudentController@loadCourses');
+Route::get('/select/batch/{id}', 'StudentController@loadBatches');
+Route::get('/getDepartmentCode', 'StudentController@getDepartmentCode');
+Route::get('/getStdSeriel', 'StudentController@getStdSeriel');
+Route::get('/getMiddleId', 'StudentController@getMiddleId');
+Route::get('/studentsList', 'StudentController@index');
+Route::get('/stdUpdate/{id}', 'StudentController@show');
+Route::post('/addNewStudent', 'StudentController@addNewStudent');
 
 Route::get('/addNewGroup', 'GroupesController@create')->name('groups.create');
 Route::get('/select/batch2/{id}', 'GroupesController@loadBatches');

@@ -5,7 +5,7 @@ namespace Modules\Slo\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Slo\Entities\batchTypes;
+use Modules\Slo\Entities\BatchTypes;
 use Carbon\Carbon;
 class BatchTypesController extends Controller
 {
@@ -15,7 +15,7 @@ class BatchTypesController extends Controller
      */
     public function index()
     {
-        $list = batchTypes::where("deleted_at" , "=" , null)->get();
+        $list = BatchTypes::where("deleted_at" , "=" , null)->get();
         return view('slo::batchTypes.index')->with("list",$list);
     }
 
@@ -36,9 +36,9 @@ class BatchTypesController extends Controller
     public function store(Request $request)
     {
         if($request->tId !=""){
-            $save = batchTypes::find($request->tId);
+            $save = BatchTypes::find($request->tId);
         }else{
-            $save = new batchTypes;
+            $save = new BatchTypes;
         }
         
         $save->description = $request->description;
@@ -58,7 +58,7 @@ class BatchTypesController extends Controller
      */
     public function show($id)
     {
-        $data = batchTypes::find($id);
+        $data = BatchTypes::find($id);
         return view('slo::batchTypes.create')->with("batchData",$data);
     }
 
@@ -90,12 +90,12 @@ class BatchTypesController extends Controller
      */
     public function trashList()
     {
-        $list = batchTypes::where("deleted_at" , "!=" , null)->get();
+        $list = BatchTypes::where("deleted_at" , "!=" , null)->get();
         return view('slo::batchTypes.trash')->with("list",$list);
     }
     public function trash(Request $request)
     {
-        $batchType = batchTypes::find($request->batchType_id);
+        $batchType = BatchTypes::find($request->batchType_id);
         if($batchType->deleted_at != null){
             $batchType->deleted_at= null;
         }else{

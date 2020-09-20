@@ -17,7 +17,8 @@ class CreateInputfsTable extends Migration
             $table->bigIncrements('id');
             $table->string('fname')->nullable();
             $table->integer('fid');
-            $table->integer('course_id');
+            $table->foreign('course_id')->references('course_id')->on('courses')->onDelete('cascade');
+            $table->unsignedBigInteger('course_id');
             $table->integer("add_by")->nullable();
             $table->integer("deleted_by")->nullable();
             $table->softDeletes();

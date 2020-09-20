@@ -5,17 +5,17 @@ namespace Modules\Slo\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Slo\Entities\batchTypes;
-use Modules\Slo\Entities\batch;
-use Modules\Slo\Entities\courses;
-use Modules\Slo\Entities\faculty;
+use Modules\Slo\Entities\BatchTypes;
+use Modules\Slo\Entities\Batch;
+use Modules\Slo\Entities\Courses;
+use Modules\Slo\Entities\Faculty;
 use Modules\Slo\Entities\Departments;
 use Modules\Slo\Entities\Student;
 use Modules\Slo\Entities\CourseStudent;
 use Modules\Slo\Entities\Country;
-use Modules\Slo\Entities\idrange;
+use Modules\Slo\Entities\Idrange;
 use Modules\Slo\Entities\Slqfstr;
-use Modules\Slo\Entities\inputf;
+use Modules\Slo\Entities\Inputf;
 use DB;
 class StudentController extends Controller
 {
@@ -35,7 +35,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $faculty = faculty::all();
+        $faculty = Faculty::all();
         $country = Country::orderBy('country_name')->get();
         return view('slo::student.create')->with(array("faculty"=> $faculty, "country"=>$country));
     }
@@ -50,7 +50,7 @@ class StudentController extends Controller
     public function getDepartmentCode(Request  $request)
     {
         //echo $id; return;
-        $dep = departments::find($request->dept_id);
+        $dep = Departments::find($request->dept_id);
         $slqf_s = Slqfstr::find(1);
         $slqf = $slqf_s->slqf_code;
         return response()->json(array('dept_code'=> $dep->dept_code,'slqf'=>$slqf), 200);
@@ -58,17 +58,17 @@ class StudentController extends Controller
     public function getMiddleId(Request  $request)
     {
         //echo $id; return;
-        $batch = batch::find($request->batch_id);
-        $batchType = batchTypes::find($batch->batch_type);
+        $batch = Batch::find($request->batch_id);
+        $batchType = BatchTypes::find($batch->batch_type);
         $course = Courses::find($batch->course_id);
-        $dep = departments::find($course->dept_id);
+        $dep = Departments::find($course->dept_id);
         return response()->json(array('dept_code'=> $dep->dept_code,'batchType_code'=>$batchType->batch_type,'batch_code'=> $batch->batch_code), 200);
     }
     public function getStdSeriel(Request  $request)
     {
         //echo $id; return;
         $course = Courses::find($request->course_id);
-        $stdSerial = idrange::all()->where('hold' , '=' , 0)->where('course_id' , '=' , $course->course_id);
+        $stdSerial = Idrange::all()->where('hold' , '=' , 0)->where('course_id' , '=' , $course->course_id);
         $serial = 0;
         foreach($stdSerial as $stdSerial){
         $serial = $stdSerial->last_id ;
@@ -127,10 +127,10 @@ class StudentController extends Controller
             $stdc->student_id = $last;
             
             if($stdc->save()){
-                $idr = idrange::find($request->idrange);
+                $idr = Idrange::find($request->idrange);
                 $idr->last_id = $request->std3 + 1;
                 $idr->save();
-                $stdb = new batch;
+                $stdb = new Batch;
                 $stdb->batch_id = $request->batch_id;
                 $stdb->student_id = $last;
                 $stdb->save();
@@ -167,8 +167,8 @@ class StudentController extends Controller
         
         //echo $data; return;
         $cid = $data[0]->course_id;
-        $genaral = inputf::where('course_id' , '=' , 0)->get();
-        $special = inputf::where('course_id' , '=' , $cid)->get();
+        $genaral = Inputf::where('course_id' , '=' , 0)->get();
+        $special = Inputf::where('course_id' , '=' , $cid)->get();
         return view('slo::student.update')->with(array("Student"=> $data[0],'genaral'=>$genaral,'special'=>$special));
     }
 

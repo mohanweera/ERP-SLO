@@ -5,9 +5,9 @@ namespace Modules\Slo\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Slo\Entities\batchTypes;
-use Modules\Slo\Entities\batch;
-use Modules\Slo\Entities\courses;
+use Modules\Slo\Entities\BatchTypes;
+use Modules\Slo\Entities\Batch;
+use Modules\Slo\Entities\Courses;
 use Carbon\Carbon;
 use DB;
 class BatchesController extends Controller
@@ -31,8 +31,8 @@ class BatchesController extends Controller
      */
     public function create()
     {
-        $courses = courses::all();
-        $batchTypes = batchTypes::all();
+        $courses = Courses::all();
+        $batchTypes = BatchTypes::all();
         return view('slo::batches.create')->with(array("courses"=>$courses,"batchTypes"=>$batchTypes));
     }
 
@@ -44,9 +44,9 @@ class BatchesController extends Controller
     public function store(Request $request)
     {
         if($request->bId !=""){
-            $data = batch::find($request->bId);
+            $data = Batch::find($request->bId);
         }else{
-            $data = new batch;
+            $data = new Batch;
         }
 
         $data->course_id = $request->course_id;
@@ -74,15 +74,15 @@ class BatchesController extends Controller
      public function loadBatchCode(Request $request)
     {
        
-        $batchTypes = batchTypes::find($request->batch_type);
+        $batchTypes = BatchTypes::find($request->batch_type);
         return response()->json(array('batch_code'=> $batchTypes->batch_type), 200);
         
     }
     public function show($id)
     {
-        $data = batch::find($id);
-        $courses = courses::all();
-        $batchTypes = batchTypes::all();
+        $data = Batch::find($id);
+        $courses = Courses::all();
+        $batchTypes = BatchTypes::all();
         return view('slo::batches.create')->with(array("batchData"=>$data,"courses"=>$courses,"batchTypes"=>$batchTypes));
         
     }
@@ -117,7 +117,7 @@ class BatchesController extends Controller
     }
     public function trash(Request $request)
     {
-        $batch = batch::find($request->batch_id);
+        $batch = Batch::find($request->batch_id);
         if($batch->deleted_at != null){
             $batch->deleted_at = null;
         }else{
