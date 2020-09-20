@@ -26,7 +26,7 @@ class IdRangeController extends Controller
         ->get();
 
         
-        return view('slo::idrange.index')->with("list",$list);
+        return view('slo::idRange.index')->with("list",$list);
     }
 
     /**
@@ -45,7 +45,7 @@ class IdRangeController extends Controller
         ->get();
         $exId = Idrange::where('hold' , '=' , 1)->get();
         $start = Idrange::all()->max('end');
-        return view('slo::idrange.create')->with(array("courses"=>$courses,"start"=>$start + 1 , 'ids'=>$exId));
+        return view('slo::idRange.create')->with(array("courses"=>$courses,"start"=>$start + 1 , 'ids'=>$exId));
     }
 
     /**
